@@ -4,16 +4,6 @@ use vielhuber\comparehelper\comparehelper;
 class BasicTest extends \PHPUnit\Framework\TestCase
 {
 
-    protected function setUp()
-    {
-
-    }
-
-    protected function tearDown()
-    {
-
-    }
-
     function test__compare()
     {
         $this->assertSame(CompareHelper::compare('foo','foo'), true);
