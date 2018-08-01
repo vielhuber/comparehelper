@@ -40,8 +40,12 @@ class comparehelper
         {
             if( is_object($d1) )
             {
-                $d1 = (array)$d1;
-                $d2 = (array)$d2;
+                /* warning: (array) kills datatypes of objects when type casting with (array) in php < 7.2 */
+                //$d1 = (array)$d1;
+                //$d2 = (array)$d2;
+                /* we cast this via json_encode instead */
+                $d1 = json_decode(json_encode($d1),true);
+                $d2 = json_decode(json_encode($d2),true);
             }
 
             if( count($d1) !== count($d2) )

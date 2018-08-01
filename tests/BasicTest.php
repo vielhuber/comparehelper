@@ -6,6 +6,7 @@ class BasicTest extends \PHPUnit\Framework\TestCase
 
     function test__compare()
     {
+
         $this->assertSame(CompareHelper::compare('foo','foo'), true);
 
         $this->assertSame(CompareHelper::compare(42,42), true);
@@ -105,6 +106,11 @@ class BasicTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(CompareHelper::compare(['#INT#' => 7,'#STR#' => 42],[7 => 7,'foo' => 42]), true);
 
         $this->assertSame(CompareHelper::compare(['#INT#' => 7,'#STR#' => 42],['foo' => 42,7 => 7]), false);
+
+        $this->assertTrue(CompareHelper::compare(
+            json_decode('{"pages":"*"}'),
+            json_decode('{"pages":{"1":"foo"}}')
+        ));       
 
     }
 
