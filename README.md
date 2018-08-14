@@ -24,8 +24,8 @@ CompareHelper::compare($var1, $var2); // true|false
 you can use the following placeholders:
 
 - ```*```: any datatype
-- ```#STR#```: Any string
-- ```#INT#```: any integer
+- ```#STR#```: any string
+- ```#INT#```: any numeric value
 
 ## examples
 
