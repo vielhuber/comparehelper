@@ -10,7 +10,7 @@ class comparehelper
         {
             return true;
         }
-        if( ($d1 === '#INT#' && is_integer($d2)) || ($d2 === '#INT#' && is_integer($d1)) )
+        if( ($d1 === '#INT#' && is_numeric($d2)) || ($d2 === '#INT#' && is_numeric($d1)) )
         {
             return true;
         }
@@ -69,7 +69,7 @@ class comparehelper
                     }
                     if( ${'d'.$num.'__key'} === '#INT#' )
                     {
-                        if( !is_integer(array_keys(${'d'.($num%2+1)})[$index]) )
+                        if( !is_numeric(array_keys(${'d'.($num%2+1)})[$index]) )
                         {
                             return false;
                         }
@@ -98,7 +98,7 @@ class comparehelper
                     }
                     if( ${'d'.$num.'__value'} === '#INT#' )
                     {
-                        if( !is_integer(${'d'.($num%2+1)}[${'d'.$num.'__key'}]) )
+                        if( !is_numeric(${'d'.($num%2+1)}[${'d'.$num.'__key'}]) )
                         {                            
                             return false;
                         }
