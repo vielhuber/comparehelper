@@ -6,6 +6,7 @@ class comparehelper
 
     public static function compare($d1, $d2)
     {
+
         if( ($d1 === '#STR#' && is_string($d2)) || ($d2 === '#STR#' && is_string($d1)) )
         {
             return true;
@@ -125,7 +126,7 @@ class comparehelper
 
             foreach($d1 as $data__key=>$data__value)
             {
-                if( !isset($d2[$data__key]) )
+                if( !array_key_exists($data__key, $d2) )
                 {
                     return false;
                 }

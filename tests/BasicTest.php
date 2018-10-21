@@ -110,7 +110,16 @@ class BasicTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(CompareHelper::compare(
             json_decode('{"pages":"*"}'),
             json_decode('{"pages":{"1":"foo"}}')
-        ));       
+        ));
+
+        $this->assertTrue(CompareHelper::compare(
+            (object)[
+                'foo' => null
+            ],
+            (object)[
+                'foo' => '*'
+            ]
+        ));
 
     }
 
