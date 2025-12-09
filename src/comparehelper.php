@@ -126,10 +126,21 @@ class comparehelper
 
     public static function assertEquals($expected, $actual, string $message = ''): void
     {
-        if (!self::compare($expected, $actual)) {
-            $diff = self::generateDiff($expected, $actual);
-            $msg = $message ?: 'Failed asserting that two values are equal (using comparehelper).';
-            throw new \PHPUnit\Framework\AssertionFailedError($msg . "\n" . $diff);
+        // Register this as a PHPUnit assertion
+        if (class_exists('\PHPUnit\Framework\Assert')) {
+            \PHPUnit\Framework\Assert::assertThat(
+                self::compare($expected, $actual),
+                \PHPUnit\Framework\Assert::isTrue(),
+                $message ?:
+                'Failed asserting that two values are equal (using comparehelper).' .
+                    "\n" .
+                    self::generateDiff($expected, $actual)
+            );
+        } else {
+            // Fallback if not in PHPUnit context
+            if (!self::compare($expected, $actual)) {
+                throw new \Exception($message ?: 'Values are not equal.');
+            }
         }
     }
 
