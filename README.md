@@ -70,3 +70,19 @@ CompareHelper::compare(['#INT#' => 7, '#STR#' => 42], ['foo' => 42, 7 => 7]); //
 // datatypes are strict
 CompareHelper::compare(42, '42'); // false
 ```
+
+## PHPUnit integration
+
+For better diff output in tests, use `assertEquals()` instead of `compare()`:
+
+```php
+// Instead of:
+$this->assertTrue(CompareHelper::compare($expected, $actual));
+
+// Use this for better diffs:
+CompareHelper::assertEquals($expected, $actual);
+
+// Example:
+CompareHelper::assertEquals(['id' => '#INT#', 'name' => '#STR#', 'status' => 'active'], $apiResponse);
+// On failure, shows a clear diff of expected vs actual values
+```
