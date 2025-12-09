@@ -54,7 +54,7 @@ class BasicTest extends \PHPUnit\Framework\TestCase
                     '#INT#',
                     '#STR#'
                 ]
-            ]           
+            ]
         ), false);
 
         $this->assertSame(CompareHelper::compare(
