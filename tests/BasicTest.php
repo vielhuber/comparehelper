@@ -5,14 +5,14 @@ class BasicTest extends \PHPUnit\Framework\TestCase
 {
     function test__compare()
     {
-        $this->assertSame(CompareHelper::compare('foo', 'foo'), true);
+        $this->assertSame(comparehelper::compare('foo', 'foo'), true);
 
-        $this->assertSame(CompareHelper::compare(42, 42), true);
+        $this->assertSame(comparehelper::compare(42, 42), true);
 
-        $this->assertSame(CompareHelper::compare(42, '42'), false);
+        $this->assertSame(comparehelper::compare(42, '42'), false);
 
         $this->assertSame(
-            CompareHelper::compare(
+            comparehelper::compare(
                 [
                     'foo' => 'bar'
                 ],
@@ -25,7 +25,7 @@ class BasicTest extends \PHPUnit\Framework\TestCase
         );
 
         $this->assertSame(
-            CompareHelper::compare(
+            comparehelper::compare(
                 [
                     'foo' => 'bar',
                     'bar' => ['baz', 42]
@@ -39,7 +39,7 @@ class BasicTest extends \PHPUnit\Framework\TestCase
         );
 
         $this->assertSame(
-            CompareHelper::compare(
+            comparehelper::compare(
                 [
                     'foo' => 'bar',
                     'bar' => ['baz', 42]
@@ -53,7 +53,7 @@ class BasicTest extends \PHPUnit\Framework\TestCase
         );
 
         $this->assertSame(
-            CompareHelper::compare(
+            comparehelper::compare(
                 [
                     'foo' => 'bar',
                     'bar' => ['baz', 42]
@@ -67,7 +67,7 @@ class BasicTest extends \PHPUnit\Framework\TestCase
         );
 
         $this->assertSame(
-            CompareHelper::compare(
+            comparehelper::compare(
                 [
                     'foo' => 'bar',
                     'bar' => ['baz', 42]
@@ -80,32 +80,32 @@ class BasicTest extends \PHPUnit\Framework\TestCase
             true
         );
 
-        $this->assertSame(CompareHelper::compare(['foo', 'bar'], ['bar', 'foo']), true);
+        $this->assertSame(comparehelper::compare(['foo', 'bar'], ['bar', 'foo']), true);
 
         $this->assertSame(
-            CompareHelper::compare(['#INT#' => true, '#STR#' => true], [42 => true, 'foo' => true]),
+            comparehelper::compare(['#INT#' => true, '#STR#' => true], [42 => true, 'foo' => true]),
             true
         );
 
         $this->assertSame(
-            CompareHelper::compare(['#STR#' => true, '#INT#' => true], [42 => true, 'foo' => true]),
+            comparehelper::compare(['#STR#' => true, '#INT#' => true], [42 => true, 'foo' => true]),
             false
         );
 
-        $this->assertSame(CompareHelper::compare(['#INT#', '#STR#'], [42, 'foo']), true);
+        $this->assertSame(comparehelper::compare(['#INT#', '#STR#'], [42, 'foo']), true);
 
-        $this->assertSame(CompareHelper::compare(['#STR#', '#INT#'], [42, 'foo']), false);
+        $this->assertSame(comparehelper::compare(['#STR#', '#INT#'], [42, 'foo']), false);
 
-        $this->assertSame(CompareHelper::compare(['foo' => 7, 'bar' => 42], ['bar' => 42, 'foo' => 7]), true);
+        $this->assertSame(comparehelper::compare(['foo' => 7, 'bar' => 42], ['bar' => 42, 'foo' => 7]), true);
 
-        $this->assertSame(CompareHelper::compare(['#INT#' => 7, '#STR#' => 42], [7 => 7, 'foo' => 42]), true);
+        $this->assertSame(comparehelper::compare(['#INT#' => 7, '#STR#' => 42], [7 => 7, 'foo' => 42]), true);
 
-        $this->assertSame(CompareHelper::compare(['#INT#' => 7, '#STR#' => 42], ['foo' => 42, 7 => 7]), false);
+        $this->assertSame(comparehelper::compare(['#INT#' => 7, '#STR#' => 42], ['foo' => 42, 7 => 7]), false);
 
-        $this->assertTrue(CompareHelper::compare(json_decode('{"pages":"*"}'), json_decode('{"pages":{"1":"foo"}}')));
+        $this->assertTrue(comparehelper::compare(json_decode('{"pages":"*"}'), json_decode('{"pages":{"1":"foo"}}')));
 
         $this->assertTrue(
-            CompareHelper::compare(
+            comparehelper::compare(
                 (object) [
                     'foo' => null
                 ],
@@ -119,10 +119,10 @@ class BasicTest extends \PHPUnit\Framework\TestCase
     function test__assertEquals()
     {
         // Test successful assertion
-        CompareHelper::assertEquals(['id' => '#INT#', 'name' => '#STR#'], ['id' => 42, 'name' => 'John']);
+        comparehelper::assertEquals(['id' => '#INT#', 'name' => '#STR#'], ['id' => 42, 'name' => 'John']);
 
         // Test with wildcards
-        CompareHelper::assertEquals(['*' => '*', 'status' => 'active'], ['foo' => 'bar', 'status' => 'active']);
+        comparehelper::assertEquals(['*' => '*', 'status' => 'active'], ['foo' => 'bar', 'status' => 'active']);
 
         $this->assertTrue(true); // Dummy assertion to make test pass
     }

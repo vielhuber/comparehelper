@@ -22,7 +22,7 @@ use vielhuber\comparehelper\comparehelper;
 ## usage
 
 ```php
-CompareHelper::compare($var1, $var2); // true|false
+comparehelper::compare($var1, $var2); // true|false
 ```
 
 you can use the following placeholders:
@@ -34,11 +34,11 @@ you can use the following placeholders:
 ## examples
 
 ```php
-CompareHelper::compare('foo', 'foo'); // true
+comparehelper::compare('foo', 'foo'); // true
 
-CompareHelper::compare(42, 42); // true
+comparehelper::compare(42, 42); // true
 
-CompareHelper::compare(
+comparehelper::compare(
     [
         'foo' => 'bar'
     ],
@@ -48,7 +48,7 @@ CompareHelper::compare(
     ]
 ); // false
 
-CompareHelper::compare(
+comparehelper::compare(
     [
         'foo' => 'bar',
         'bar' => ['baz', 42]
@@ -60,15 +60,15 @@ CompareHelper::compare(
 ); // true
 
 // ordering is lazy
-CompareHelper::compare(['foo', 'bar'], ['bar', 'foo']); // true
-CompareHelper::compare(['#INT#', '#STR#'], [42, 'foo']); // true
-CompareHelper::compare(['#INT#', '#STR#'], ['foo', 42]); // false
-CompareHelper::compare(['foo' => 7, 'bar' => 42], ['bar' => 42, 'foo' => 7]); // true
-CompareHelper::compare(['#INT#' => 7, '#STR#' => 42], [7 => 7, 'foo' => 42]); // true
-CompareHelper::compare(['#INT#' => 7, '#STR#' => 42], ['foo' => 42, 7 => 7]); // false
+comparehelper::compare(['foo', 'bar'], ['bar', 'foo']); // true
+comparehelper::compare(['#INT#', '#STR#'], [42, 'foo']); // true
+comparehelper::compare(['#INT#', '#STR#'], ['foo', 42]); // false
+comparehelper::compare(['foo' => 7, 'bar' => 42], ['bar' => 42, 'foo' => 7]); // true
+comparehelper::compare(['#INT#' => 7, '#STR#' => 42], [7 => 7, 'foo' => 42]); // true
+comparehelper::compare(['#INT#' => 7, '#STR#' => 42], ['foo' => 42, 7 => 7]); // false
 
 // datatypes are strict
-CompareHelper::compare(42, '42'); // false
+comparehelper::compare(42, '42'); // false
 ```
 
 ## phpunit integration
@@ -77,11 +77,11 @@ for better diff output in tests, use `assertEquals()` instead of `compare()`:
 
 ```php
 // instead of:
-$this->assertTrue(CompareHelper::compare($expected, $actual));
+$this->assertTrue(comparehelper::compare($expected, $actual));
 
 // use this for better diffs:
-CompareHelper::assertEquals($expected, $actual);
+comparehelper::assertEquals($expected, $actual);
 
 // example:
-CompareHelper::assertEquals(['id' => '#INT#', 'name' => '#STR#', 'status' => 'active'], $apiResponse);
+comparehelper::assertEquals(['id' => '#INT#', 'name' => '#STR#', 'status' => 'active'], $apiResponse);
 ```
